@@ -66,11 +66,42 @@ router.get("/college/:id", async(req,res)=>{
 
 /////register for course
 router.post("/course/register", async(req,res)=>{
-    
+    const {studentId, courseId } = req.body
+
+    try {
+
+        await Student.updateOne({_id : studentId}, {
+            $push : {registeredCourses : courseId}
+        })
+
+        res.send("Registered")
+        
+    } catch (error) {
+
+        return res.status(400).send("Error")
+        
+    }
+
+
 })
 
 
 
+//////View all courses
+router.post("/courses/all", async(req,res)=>{
+const {studentId} = req.body
+    try {
+
+        var student = await Student.findOne({_id : studentId},{registeredCourses :1})
+
+        res.send(student)
+    } catch (error) {
+
+        return res.status(400).send("Error")
+        
+    }
+
+})
 
 
 
