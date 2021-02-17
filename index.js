@@ -20,6 +20,14 @@ var stdRoute = require("./routes/student")
 
 app.use("/api",[stdRoute])
 
+
+
+
+
+app.get("/", (req,res)=>{
+    res.send("KCE - OOAD - Batch 5")
+})
+
 app.listen(5000,()=>{
     console.log("Server is running")
 })
