@@ -28,6 +28,8 @@ app.get("/", (req,res)=>{
     res.send("KCE - OOAD - Batch 5")
 })
 
-app.listen(5000,()=>{
+
+require("dotenv").config()
+app.listen(process.env.PORT,()=>{
     console.log("Server is running")
 })
